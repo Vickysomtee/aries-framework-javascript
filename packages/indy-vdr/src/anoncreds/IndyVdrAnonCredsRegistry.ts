@@ -48,7 +48,7 @@ export class IndyVdrAnonCredsRegistry implements AnonCredsRegistry {
             version: schema.version,
             issuerId: schema.issuerId,
           },
-          schemaId: schema.schemaId,
+          schemaId: schema.id,
           resolutionMetadata: {},
           schemaMetadata: {
             didIndyNamespace: indyNamespace,
@@ -215,7 +215,7 @@ export class IndyVdrAnonCredsRegistry implements AnonCredsRegistry {
             credentialDefinitionId: credentialDefinitionId,
             credentialDefinition: {
               issuerId: didFromCredentialDefinitionId(credentialDefinitionId),
-              schemaId: schema.schemaId,
+              schemaId: schema.id,
               tag: response.result.tag,
               type: 'CL',
               value: response.result.data,
@@ -431,7 +431,7 @@ export class IndyVdrAnonCredsRegistry implements AnonCredsRegistry {
 
       return {
         schema: {
-          schemaId: schemaID,
+          id: schemaID,
           seqNo: response.result.seqNo,
           attrNames: response.result.data.attr_names,
           name: response.result.data.name,
