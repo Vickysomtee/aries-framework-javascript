@@ -208,25 +208,20 @@ export class IndyVdrAnonCredsRegistry implements AnonCredsRegistry {
       const response = await pool.submitReadRequest(request)
 
       if (response.result.data) {
-        const { schema } = await this.fetchIndySchema(agentContext, response.result.ref.toString());
-
-        if (schema) {
-          return {
-            credentialDefinitionId: credentialDefinitionId,
-            credentialDefinition: {
-              issuerId: didFromCredentialDefinitionId(credentialDefinitionId),
-              schemaId: schema.id,
-              tag: response.result.tag,
-              type: 'CL',
-              value: response.result.data,
-            },
-            credentialDefinitionMetadata: {
-              didIndyNamespace: pool.indyNamespace,
-            },
-            resolutionMetadata: {},
-          }
+        return {
+          credentialDefinitionId: credentialDefinitionId,
+          credentialDefinition: {
+            issuerId: didFromCredentialDefinitionId(credentialDefinitionId),
+            schemaId: response.result.ref.toString(),
+            tag: response.result.tag,
+            type: 'CL',
+            value: response.result.data,
+          },
+          credentialDefinitionMetadata: {
+            didIndyNamespace: pool.indyNamespace,
+          },
+          resolutionMetadata: {},
         }
-
       }
 
       agentContext.config.logger.error(`Error retrieving credential definition '${credentialDefinitionId}'`)
@@ -436,7 +431,7 @@ export class IndyVdrAnonCredsRegistry implements AnonCredsRegistry {
           attrNames: response.result.data.attr_names,
           name: response.result.data.name,
           version: response.result.data.version,
-          issuerId: did
+          issuerId: did,
         },
         indyNamespace: pool.indyNamespace,
       }

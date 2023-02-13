@@ -42,7 +42,7 @@ export class IndySdkAnonCredsRegistry implements AnonCredsRegistry {
 
   public async getSchema(agentContext: AgentContext, schemaId: string): Promise<GetSchemaReturn> {
     try {
-     const {schema, indyNamespace} = await this.fetchIndySchema(agentContext, schemaId)
+      const { schema, indyNamespace } = await this.fetchIndySchema(agentContext, schemaId)
 
       return {
         schema: {
@@ -196,7 +196,7 @@ export class IndySdkAnonCredsRegistry implements AnonCredsRegistry {
         }
       )
 
-      const {schema} = await this.fetchIndySchema(agentContext, credentialDefinition.schemaId)
+      const { schema } = await this.fetchIndySchema(agentContext, credentialDefinition.schemaId)
 
       return {
         credentialDefinitionId: credentialDefinition.id,
@@ -513,7 +513,7 @@ export class IndySdkAnonCredsRegistry implements AnonCredsRegistry {
       schema,
     })
 
-    const issuerId = didFromSchemaId(schema.id);
+    const issuerId = didFromSchemaId(schema.id)
 
     return {
       schema: {
@@ -522,7 +522,7 @@ export class IndySdkAnonCredsRegistry implements AnonCredsRegistry {
         attrNames: schema.attrNames,
         name: schema.name,
         version: schema.version,
-        issuerId: issuerId
+        issuerId: issuerId,
       },
       indyNamespace: pool.didIndyNamespace,
     }
